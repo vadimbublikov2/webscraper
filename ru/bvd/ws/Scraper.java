@@ -247,7 +247,7 @@ public class Scraper {
 
         //Scraper singleton
         Scraper scraper = Scraper.INSTANCE;
-        System.out.println(config.toString());
+        //System.out.println(config.toString());
         scraper.setConfig(config);
         scraper.process();
     }

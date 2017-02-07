@@ -15,55 +15,29 @@ public class ScraperTest {
     private static final String CRLF = "" + CR + LF;
     private static final int port = 8080;
     private static final String testDocument1 = "/home/vadim/IdeaProjects/webscraper/src/resources/testDocument1.html";
+    private static final String testDocument2 = "/home/vadim/IdeaProjects/webscraper/src/resources/testDocument2.html";
 
     private ServerSocket serverSocket;
 
-    public static void main(String[] args) throws InterruptedException, IOException {
+    public static void main(String[] args) throws Exception {
         ScraperTest scraperTest = new ScraperTest();
         scraperTest.process();
     }
 
-    private void  process () throws InterruptedException, IOException {
+    private void  process () throws Exception {
         serverSocket = new ServerSocket(port);
         Thread thread = new Thread( new ScraperTestServer() );
         thread.start();
 
-        //test1
-        URL url;
-        try {
-            url = new URL("http://localhost:" + port +"/test1");
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-        HttpURLConnection con;
-        try {
-            con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("GET");
+        String scraperString = "-f /home/vadim/IdeaProjects/webscraper/src/resources/testList.txt API,xpath -v -w -c -e";
+        String[] scraperArgs = scraperString.split(" ");
 
-            int httpStatus = con.getResponseCode();
-
-            StringBuilder response = new StringBuilder();
-            try (BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()))) {
-                String inputLine;
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-                }
-                in.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            System.out.println(response);
+        Scraper.main(scraperArgs);
 
 
 
-            thread.interrupt();
-            serverSocket.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } finally {
-            thread.interrupt();
-        }
+        thread.interrupt();
+        serverSocket.close();
 
 
 
@@ -73,9 +47,15 @@ public class ScraperTest {
         @Override
         public void run() {
 
-            List<String> linesFile;
+            List<String> linesFileTest1;
             try {
-                linesFile = Files.readAllLines(Paths.get(testDocument1));
+                linesFileTest1 = Files.readAllLines(Paths.get(testDocument1));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            List<String> linesFileTest2;
+            try {
+                linesFileTest2 = Files.readAllLines(Paths.get(testDocument2));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -90,12 +70,18 @@ public class ScraperTest {
                         request = bufferedReader.readLine();
                         OutputStream output = socket.getOutputStream();
                         output.write(("HTTP/1.0 200 OK" + CRLF + CRLF).getBytes());
-                        for (String s: linesFile) {
-                            output.write(s.getBytes());
+                        if (request.contains("/test1")) {
+                            for (String s : linesFileTest1) {
+                                output.write(s.getBytes());
+                            }
                         }
-
+                        else if (request.contains("test2")) {
+                            for (String s : linesFileTest2) {
+                                output.write(s.getBytes());
+                            }
+                        }
                         output.flush();
-                        System.out.println(request);
+                        //System.out.println(request);
                     } catch (IOException e) {
                         Thread.currentThread().interrupt();
                     }
