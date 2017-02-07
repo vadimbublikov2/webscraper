@@ -143,5 +143,4 @@ public class Extractor implements Callable<Scraper.Includes> {
         }
         return includesLocal;
     }
-
 }
