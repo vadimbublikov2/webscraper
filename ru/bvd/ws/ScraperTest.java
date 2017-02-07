@@ -1,9 +1,6 @@
 package ru.bvd.ws;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -29,18 +26,30 @@ public class ScraperTest {
         Thread thread = new Thread( new ScraperTestServer() );
         thread.start();
 
-        String scraperString = "-f /home/vadim/IdeaProjects/webscraper/src/resources/testList.txt API,xpath -v -w -c -e";
+        String scraperString = "-f /home/vadim/IdeaProjects/webscraper/src/resources/testList.txt API,xpath -w -c -e";
         String[] scraperArgs = scraperString.split(" ");
 
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(out);
+        PrintStream oldps = System.out;
+        System.setOut(ps);
+
         Scraper.main(scraperArgs);
+        System.out.flush();
+        System.setOut(oldps);
 
-
+        String outStr = out.toString();
+        if (outStr.contains("http://localhost:8080/test1, characters count=86339, words include=3"))
+            System.out.println("Test1 success");
+        else
+            System.out.println("Test1 error");
+        if (outStr.contains("http://localhost:8080/test2, characters count=443322, words include=13"))
+            System.out.println("Test2 success");
+        else
+            System.out.println("Test2 error");
 
         thread.interrupt();
         serverSocket.close();
-
-
-
     }
 
     private class ScraperTestServer implements Runnable {
