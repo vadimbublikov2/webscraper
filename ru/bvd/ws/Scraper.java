@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
 
-class Scraper {
+public class Scraper {
     //---------static
     static final Scraper INSTANCE = new Scraper();
     private static final String man = " webscraper - console web scraper (http://en.wikipedia.org/wiki/Web_scraping)\n"+
@@ -83,7 +83,7 @@ class Scraper {
     BlockingDeque<String> getQueue() { return queue; }
 
     //-----------private
-    private Words words;
+    private Words words = new Words();
     private Documents documents = new Documents();
     private Includes includes = new Includes();
     private Config config;
@@ -108,7 +108,9 @@ class Scraper {
         }
 
         String[] wordsArr = config.wordString.split(",");
-        words = (Words) new ArrayList<>(Arrays.asList(wordsArr));
+        for (int i = 0; i < wordsArr.length; i++) {
+            words.add( wordsArr[i] );
+        }
 
         int threadCount = Math.min(queue.size(),5);
         final ExecutorService pool = Executors.newFixedThreadPool(threadCount);
@@ -245,7 +247,7 @@ class Scraper {
 
         //Scraper singleton
         Scraper scraper = Scraper.INSTANCE;
-        //System.out.println(config.toString());
+        System.out.println(config.toString());
         scraper.setConfig(config);
         scraper.process();
     }

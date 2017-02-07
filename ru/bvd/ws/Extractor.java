@@ -105,7 +105,7 @@ public class Extractor implements Callable<Scraper.Includes> {
                     i = m.start();
                     do {
                         symbol1 = doc.getContent().charAt(i);
-                        if('>'==symbol1 || '<'==symbol1 || ("script;meta;img".contains(tagName)&&'"'==symbol1) ) {
+                        if('>'==symbol1 || '<'==symbol1 || ("script;meta;img;/p;p".contains(tagName+";")&&'"'==symbol1) ) {
                             i++;
                             break;
                         }
@@ -121,7 +121,7 @@ public class Extractor implements Callable<Scraper.Includes> {
                     i = m.start()+1;
                     do {
                         symbol1 = doc.getContent().charAt(i);
-                        if('>'==symbol1 || '<'==symbol1  || ("script;meta;img".contains(tagName)&&'"'==symbol1) ){
+                        if('>'==symbol1 || '<'==symbol1  || ("script;meta;img;/p;p".contains(tagName+";")&&'"'==symbol1) ){
                             break;
                         }
                         symbol2 = doc.getContent().charAt(i+1);
