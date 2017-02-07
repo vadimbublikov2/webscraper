@@ -19,7 +19,6 @@ public class Include {
         this.positionStop = positionStop;
     }
 
-
     //get/set
     public void setDocument(Document document) {
         this.document = document;
