@@ -1,6 +1,8 @@
 package ru.bvd.ws;
 
 import java.util.ArrayList;
+import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.LinkedBlockingDeque;
 
 class Scraper {
     //---------static
@@ -28,4 +30,12 @@ class Scraper {
     }
     static class Words extends ArrayList<String>{}
     static class Includes extends ArrayList<Include>{}
+
+
+    private final BlockingDeque<String> queue = new LinkedBlockingDeque<>();
+    BlockingDeque<String> getQueue() {
+        return queue;
+    }
+
+
 }

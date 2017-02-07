@@ -7,7 +7,7 @@ public class Document {
     private int httpStatus = 0;
     private String content;
     private String statusError;
-    private Duration getDuration;
+    private Duration requestDuration;
     private Duration processDuration;
     private int wordsCount = 0;
 
@@ -16,59 +16,59 @@ public class Document {
     }
 
     //get/set
-    public void setUrl(String url) {
+    void setUrl(String url) {
         this.url = url;
     }
 
-    public void setHttpStatus(int httpStatus) {
+    void setHttpStatus(int httpStatus) {
         this.httpStatus = httpStatus;
     }
 
-    public void setContent(String content) {
+    void setContent(String content) {
         this.content = content;
     }
 
-    public void setStatusError(String statusError) {
+    void setStatusError(String statusError) {
         this.statusError = statusError;
     }
 
-    public void setGetDuration(Duration getDuration) {
-        this.getDuration = getDuration;
+    void setRequestDuration(Duration requestDuration) {
+        this.requestDuration = requestDuration;
     }
 
-    public void setProcessDuration(Duration processDuration) {
+    void setProcessDuration(Duration processDuration) {
         this.processDuration = processDuration;
     }
 
-    public void setWordsCount(int wordsCount) {
+    void setWordsCount(int wordsCount) {
         this.wordsCount = wordsCount;
     }
 
-    public String getUrl() {
+    String getUrl() {
         return url;
     }
 
-    public int getHttpStatus() {
+    int getHttpStatus() {
         return httpStatus;
     }
 
-    public String getContent() {
+    String getContent() {
         return content;
     }
 
-    public String getStatusError() {
+    String getStatusError() {
         return statusError;
     }
 
-    public Duration getGetDuration() {
-        return getDuration;
+    Duration getRequestDuration() {
+        return requestDuration;
     }
 
-    public Duration getProcessDuration() {
+    Duration getProcessDuration() {
         return processDuration;
     }
 
-    public int getWordsCount() {
+    int getWordsCount() {
         return wordsCount;
     }
 
