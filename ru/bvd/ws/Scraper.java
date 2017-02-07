@@ -6,7 +6,6 @@ import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -23,7 +22,7 @@ public class Scraper {
             "    -c count number of characters of each web page\n"+
             "    -e extract sentences’ which contain given words\n"+
             " EXAMPLE\n"+
-            "    java –jar scraper.jar http://www.cnn.com Trump,Trump's –v –w –c –e\n"+
+            "    java –jar scraper.jar https://www.bloomberg.com/europe brexit,cameron –v –w –c –e\n"+
             "    java –jar scraper.jar -f urls.txt Greece,default –v –w –c –e\n" +
             " OUTPUT FORMAT\n" +
             "    URL | word | tag | sentence";
