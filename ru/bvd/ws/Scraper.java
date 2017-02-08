@@ -22,8 +22,8 @@ public class Scraper {
             "    -c count number of characters of each web page\n"+
             "    -e extract sentences’ which contain given words\n"+
             " EXAMPLE\n"+
-            "    java –jar scraper.jar https://www.bloomberg.com/europe brexit,cameron –v –w –c –e\n"+
-            "    java –jar scraper.jar -f urls.txt Greece,default –v –w –c –e\n" +
+            "    java –jar webscraper.jar https://www.bloomberg.com/europe brexit,cameron –v –w –c –e\n"+
+            "    java –jar webscraper.jar -f urls.txt Greece,default –v –w –c –e\n" +
             " OUTPUT FORMAT\n" +
             "    URL | word | tag | sentence";
 
