@@ -2,6 +2,10 @@ package ru.bvd.ws;
 
 import java.time.Duration;
 
+/**
+ * Storage content, request status, summary extract and processing
+ */
+
 public class Document {
     private String url;
     private int httpStatus = 0;

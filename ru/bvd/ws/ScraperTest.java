@@ -6,6 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+/**
+ * Test for Scraper. Check result output test case. Contains socket server for get test documents.
+ */
+
 public class ScraperTest {
     private static final char LF = '\n';
     private static final char CR = '\r';

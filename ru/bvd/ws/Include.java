@@ -1,5 +1,10 @@
 package ru.bvd.ws;
 
+/**
+ * Storage includes words from web resources after extract
+ */
+
+
 public class Include {
     private Document document;
     private String statment;

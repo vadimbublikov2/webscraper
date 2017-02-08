@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
+/**
+ * Main process class for parse arguments, call threads extract, union result, output result
+ * @see ScraperTest
+ */
+
 public class Scraper {
     //---------static
     static final Scraper INSTANCE = new Scraper();
