@@ -43,7 +43,7 @@ public class ScraperTest {
         System.setOut(oldps);
 
         String outStr = out.toString();
-        if (outStr.contains("http://localhost:8080/test1, characters count=86339, words include=3"))
+        if (outStr.contains("http://localhost:8080/test1, characters count=86219, words include=3"))
             System.out.println("Test1 success");
         else
             System.out.println("Test1 error");
@@ -51,6 +51,8 @@ public class ScraperTest {
             System.out.println("Test2 success");
         else
             System.out.println("Test2 error");
+
+        System.out.println(outStr);
 
         thread.interrupt();
         serverSocket.close();
